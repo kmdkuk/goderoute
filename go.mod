@@ -1,4 +1,4 @@
-module github.com/kmdkuk/go-cli-template
+module github.com/kmdkuk/goderoute
 
 go 1.14
 

@@ -34,16 +34,14 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "goderoute",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "traceroute",
+	Long:  `traceroute`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	//	Run: func(cmd *cobra.Command, args []string) { },
+	RunE:          run,
+	Args:          cobra.ExactArgs(1),
+	SilenceErrors: true,
+	SilenceUsage:  true,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -91,4 +89,9 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		log.Error("Using config file:", viper.ConfigFileUsed())
 	}
+}
+
+func run(_ *cobra.Command, args []string) error {
+	log.Debug(args[0])
+	return nil
 }
